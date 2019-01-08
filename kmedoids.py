@@ -1,21 +1,45 @@
-import scipy.spatial.distance as dist
+#import scipy.spatial.distance as dist
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import math
+from metricas import *
+#import math
 
 # Esqueleto do prof agora adpatar
 
-# ==================  my functions ================
-def my_distance(x, y):
+# ==================  my distances ================
+def my_distance_euclidian(x, y):
     if x.size != y.size:
         return (-1)
-    nn = dist.euclidean(x, y)
-    # nn=dist.cityblock(x,y)
-    # nn=dist.chebyshev(x,y)
-    # nn=dist.canberra(x,y)
-    # nn=dist.cosine(x,y)
+    nn = Euclidian(x, y)
+
     return nn
+
+def my_distance_manhattan(x,y):
+    if x.size != y.size:
+        return (-1)
+    nn = Manhattan(x, y)
+    return nn
+
+def my_distance_chebyshev(x,y):
+    if x.size != y.size:
+        return (-1)
+    nn = Chebyshev(x, y)
+    return nn
+
+def my_distance_canberra(x,y):
+    if x.size != y.size:
+        return (-1)
+    nn = Canberra(x, y)
+    return nn
+
+def my_distance_cosine(x,y):
+    if x.size != y.size:
+        return (-1)
+    nn = Cosine(x, y)
+    return nn
+
+# ================== end ================
 
 
 def initialise_representative(data, K):
@@ -85,8 +109,12 @@ def between_cluster(rep, K):
 
 # read the data file
 # my_data = pd.read_csv('../../csv/iris.csv',sep=',');D=np.array(my_data.values[:,1:3],dtype=np.float)
-my_data = pd.read_csv('../../csv/xclara.csv', sep=',');
+my_data = pd.read_csv("DishonestInternetusersdataset.csv");
+
+print(my_data)
 D = np.array(my_data.values[0:3000, 1:3], dtype=np.float)
+
+
 
 # set the sizes
 N = D.shape[0]  # number of elements/events

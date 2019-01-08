@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import pandas as pd
 
 def Euclidian(x, y):
     if x.size != y.size:
@@ -44,3 +45,7 @@ def Cosine(x, y):
     denom = np.linalg.norm(x, 2) * np.linalg.norm(y, 2)
     nn = 1 - numer / denom
     return nn
+
+my_data = pd.read_csv("DishonestInternetusersdataset.csv");
+
+print(my_data)
